@@ -17,7 +17,8 @@ class MealItem extends StatelessWidget {
   final bool isVegan;
   final bool isVegetarian;
 
-  MealItem({
+  const MealItem({
+    super.key,
     required this.imageUrl,
     required this.id,
     required this.categories,
@@ -37,16 +38,12 @@ class MealItem extends StatelessWidget {
     switch (complexity) {
       case Complexity.Simple:
         return 'Simple';
-        break;
       case Complexity.Challenging:
         return 'Challenging';
-        break;
       case Complexity.Hard:
         return 'Hard';
-        break;
       default:
         return 'Unknown';
-        break;
     }
   }
 
@@ -54,34 +51,29 @@ class MealItem extends StatelessWidget {
     switch (affordability) {
       case Affordability.Affordable:
         return 'Affordable';
-        break;
       case Affordability.Luxurious:
         return 'Luxurious';
-        break;
       case Affordability.Pricey:
         return 'Pricey';
-        break;
-
       default:
         return 'Unknown';
-        break;
     }
   }
 
-  void selectmeal(BuildContext ctx) {
+  void selectMeal(BuildContext ctx) {
     Navigator.of(ctx)
         .pushNamed(MealDetailScreen.routeName, arguments: id)
         .then((value) {
-          if (value != null){
-            //removeItem(value);
-          }
+      if (value != null) {
+        //removeItem(value);
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => selectmeal(context),
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -109,7 +101,8 @@ class MealItem extends StatelessWidget {
                   child: Container(
                     width: 400,
                     color: Colors.black54,
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: Text(
                       title,
                       style: const TextStyle(
@@ -138,19 +131,19 @@ class MealItem extends StatelessWidget {
                     children: [
                       const Icon(Icons.work),
                       const SizedBox(width: 6),
-                      Text("$complexityText"),
+                      Text(complexityText),
                     ],
                   ),
                   Row(
                     children: [
                       const Icon(Icons.attach_money),
                       const SizedBox(width: 6),
-                      Text("$affordableText"),
+                      Text(affordableText),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

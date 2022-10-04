@@ -7,7 +7,8 @@ class MealDetailScreen extends StatelessWidget {
   final toggleFavorites;
   final isMealFavorite;
 
-  const MealDetailScreen(this.toggleFavorites, this.isMealFavorite);
+  const MealDetailScreen(this.toggleFavorites, this.isMealFavorite,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class MealDetailScreen extends StatelessWidget {
 
     Widget buildTitle(BuildContext context, String text) {
       return Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
           text,
           style: Theme.of(context).textTheme.caption,
@@ -33,8 +34,8 @@ class MealDetailScreen extends StatelessWidget {
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(10),
         ),
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         height: 150,
         width: 300,
         child: child,
@@ -46,7 +47,7 @@ class MealDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 300,
               width: double.infinity,
               child: Image.network(
@@ -62,7 +63,7 @@ class MealDetailScreen extends StatelessWidget {
                     color: Theme.of(context).secondaryHeaderColor,
                     child: Padding(
                       padding:
-                          EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       child: Text(selectedMeal.ingredients[index]),
                     ),
                   );
@@ -81,7 +82,7 @@ class MealDetailScreen extends StatelessWidget {
                       ),
                       title: Text(selectedMeal.steps[index]),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 );
               },
@@ -91,9 +92,10 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-            isMealFavorite(mealId) ? Icons.star : Icons.star_border),
-        onPressed: (){toggleFavorites(mealId);},
+        child: Icon(isMealFavorite(mealId) ? Icons.star : Icons.star_border),
+        onPressed: () {
+          toggleFavorites(mealId);
+        },
       ),
     );
   }

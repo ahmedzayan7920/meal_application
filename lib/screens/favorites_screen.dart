@@ -5,7 +5,7 @@ import 'package:meal_application/widgets/meal_item.dart';
 class FavoritesScreen extends StatelessWidget {
   final List<Meal> favouriteMeals;
 
-  FavoritesScreen(this.favouriteMeals);
+  const FavoritesScreen(this.favouriteMeals, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,6 @@ class FavoritesScreen extends StatelessWidget {
             isLactoseFree: favouriteMeals[index].isLactoseFree,
             isVegan: favouriteMeals[index].isVegan,
             isVegetarian: favouriteMeals[index].isVegetarian,
-
           );
         },
         itemCount: favouriteMeals.length,
